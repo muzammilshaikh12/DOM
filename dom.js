@@ -1,24 +1,21 @@
- const a = document.getElementById('header-title');
- a.innerHTML="Non Item Lister"
-// const b=document.getElementById('main-header')
-// b.style.borderBottom="3px solid black"
 
-// const c= document.querySelector(".title")
-// c.style.color="green"
+//  Query Selector
+ const second=document.querySelector('.list-group-item:nth-child(2)')
+ second.style.backgroundColor="green"
+ const third=document.querySelector('.list-group-item:nth-child(3)')
+ third.style.display="none"
 
-// Get elements by class name
-// const items=document.getElementsByClassName('list-group-item')
-// items[2].style.backgroundColor="green";
-// for(let i=0;i<items.length;i++) {
-//     items[i].style.fontWeight='bold'
-// }
+//  Query Selector all
 
- const li=document.getElementsByTagName('li');
- for(let i=0;i<=li.length;i++) {
-    li[i].style.color="blue";
- }
- 
+let li = document.querySelectorAll('li')
+li[1].style.color = "green"
+
+let odd=document.querySelectorAll("li:nth-child(odd)")
+for(let i=0;i<=odd.length;i++) {
+    odd[i].style.backgroundColor = "green"
+    }
 
 
 
  
+
