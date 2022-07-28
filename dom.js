@@ -1,64 +1,94 @@
- let itemlist=document.querySelector('#items')
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
 
-// 1-Parent node
-itemlist.parentNode.style.backgroundColor="Green"
+form.addEventListener('submit', addItem);
 
-// 2-Last Element child
-itemlist.lastElementChild.style.fontFamily="verdana"
+// Add item
+function addItem(e){
+  e.preventDefault();
 
-// 3-last child
-itemlist.lastChild.textContent="Hello World!!"
+  // Get input value
+  var newItem = document.getElementById('item').value;
 
-// 4-first Element child
-itemlist.firstElementChild.style.border='3px solid green'
+  // Create new li element
+  var li = document.createElement('li');
+  // Add class
+  li.className = 'list-group-item';
+  // Add text node with input value
+  li.appendChild(document.createTextNode(newItem));
 
-// 5-First child
-console.log(itemlist.firstChild)
+  // Create del button element
+  var deleteBtn = document.createElement('button');
 
-// 6-next sibling
-console.log(itemlist.nextSibling)
+  // Add classes to del button
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-// 7- next element sibling
-itemlist.nextElementSibling.style.color="white"
+  // Append text node
+  deleteBtn.appendChild(document.createTextNode('X'));
 
-// 8-previous sibling
-console.log(itemlist.previousSibling)
+  // Append button to li
+  li.appendChild(deleteBtn);
 
-// 9-previous element sibling
-itemlist.previousElementSibling.style.color="white"
-itemlist.previousElementSibling.style.border="3px solid white"
+// //   add edit button to new elements
+// var n = document.createElement('button');
 
-//  10-create new child
-let newChild=document.createElement("div")
-newChild.setAttribute('title','item2.0')
+// //  add class to edit button
+// n.className='editbtn'
 
-//  11-creating text node
-let newchildtext=document.createTextNode('I am the new child')
+// // append text to edit button
+// n.appendChild(document.createTextNode('edit'))
 
-// 12-appending child
-newChild.append(newchildtext)
-console.log(newChild)
+// // add append button to li
+// li.appendChild(n)
 
-// Now go head and add HEllo word before Item Lister
-let task15 =  document.createElement('h4')
-task15.className="Dom 15"
-task15.id="Dom 15!!"
-task15.setAttribute('title','Hello')
+  // Append li to list
+  itemList.appendChild(li);
+}
 
-let task15text=document.createTextNode('Hello')
-task15.append(task15text)
-
-let head=document.querySelector('header .container')
-let title=document.querySelector('header h1')
-
-//Now go head and add HEllo word before Item 1 
-let parentnode = document.getElementById('items')
-
-parentnode.innerHTML='Hello' + parentnode.innerHTML
-
-console.log(parentnode.innerHTML)
-
-
-
+// Remove item
+itemList.addEventListener('click', removeItem)
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+      if(confirm('Are You Sure?')){
+        var li = e.target.parentElement;
+        itemList.removeChild(li);
+      }
+    }
+  }
  
 
+//  filter event
+
+var filter=document.getElementById('filter')
+filter.addEventListener('keyup', filterItem)
+
+// Filter Items
+function filterItem(e){
+    // convert text to lowercase
+    var text = e.target.value.toLowerCase();
+    // Get lis
+    var items = itemList.getElementsByTagName('li');
+    // Convert to an array
+    Array.from(items).forEach(function(item){
+      var itemName = item.firstChild.textContent;
+      if(itemName.toLowerCase().indexOf(text) != -1){
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  //   adding edit button
+var allitems=document.getElementsByTagName('li')
+var list= document.getElementsByClassName("div")
+for(let i=0;i<=list.length;i++){
+var editbtn =  document.createElement('button')
+editbtn.class="editbtn"
+  // Append text node
+  editbtn.appendChild(document.createTextNode('edit'));
+ 
+  list[i].appendChild(editbtn)
+}
+
+  allitems.appendChild(list)
