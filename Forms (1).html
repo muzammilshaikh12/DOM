@@ -30,7 +30,51 @@
                   <button>Submit</button>
               </div>
             </form>
+             
+            <ul id="ul">
+               
+            </ul>
+            <script> 
+            function savetoLocalstorage(event) {
+                event.preventDefault();
+            let userDetails = {
+                Name : document.getElementById('name').value,
+                Email : document.getElementById('emailID').value,
+                Number :document.getElementById('phone').value,
+                Date : document.getElementById('date').value,
+                Time : document.getElementById('time').value
+            }
 
+            let userDetails_serialized=JSON.stringify(userDetails)
+
+            localStorage.setItem('User-Details' , userDetails_serialized)
+
+            let userDetails_deserialized=JSON.parse(localStorage.getItem('User-Details'))
+
+            // console.log(userDetails_deserialized);
+            // var list=document.getElementById('details')
+            
+        }
+        
+        let info=localStorage.getItem('User-Details')
+        let d=document.getElementById('ul')
+            // console.log(info)
+          if(info === null) {
+             d.style.display='none'
+          } else {
+           
+        
+           let li=document.createElement('li')
+
+           li.appendChild(document.createTextNode(info))
+
+           d.appendChild(li)
+         
+          }
+
+       
+
+            </script>
           <!-- <script>
             function savetoLocalstorage(){
                 
@@ -48,7 +92,7 @@
             }
             // savetoLocalstorage()
           </script> -->
-          <script>
+          <!-- <script>
             function savetoLocalstorage(event){
                 
             event.preventDefault();
@@ -67,7 +111,7 @@
 
            
             // savetoLocalstorage()
-          </script>
+          </script> -->
         </div>
 </body>
 </html>
