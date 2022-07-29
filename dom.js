@@ -1,8 +1,7 @@
 var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 
-form.addEventListener('submit', addItem);
-
+form.addEventListener('submit', addItem );
 // Add item
 function addItem(e){
   e.preventDefault();
@@ -12,11 +11,22 @@ function addItem(e){
 
   // Create new li element
   var li = document.createElement('li');
-  // Add class
+
+ // Add class
   li.className = 'list-group-item';
+
   // Add text node with input value
   li.appendChild(document.createTextNode(newItem));
 
+  
+ var newdes =  document.getElementById('item1').value
+
+ var newdiv=document.createElement('div')
+ newdiv.className='div2'
+
+ newdiv.appendChild(document.createTextNode(newdes))
+
+ li.appendChild(newdiv)
   // Create del button element
   var deleteBtn = document.createElement('button');
 
@@ -29,17 +39,7 @@ function addItem(e){
   // Append button to li
   li.appendChild(deleteBtn);
 
-// //   add edit button to new elements
-// var n = document.createElement('button');
-
-// //  add class to edit button
-// n.className='editbtn'
-
-// // append text to edit button
-// n.appendChild(document.createTextNode('edit'))
-
-// // add append button to li
-// li.appendChild(n)
+  
 
   // Append li to list
   itemList.appendChild(li);
@@ -68,27 +68,42 @@ function filterItem(e){
     var text = e.target.value.toLowerCase();
     // Get lis
     var items = itemList.getElementsByTagName('li');
+    var item1 = itemList.getElementsByClassName('div2');
     // Convert to an array
     Array.from(items).forEach(function(item){
       var itemName = item.firstChild.textContent;
+       
       if(itemName.toLowerCase().indexOf(text) != -1){
         item.style.display = 'block';
       } else {
         item.style.display = 'none';
       }
     });
-  }
+  
 
-  //   adding edit button
-var allitems=document.getElementsByTagName('li')
-var list= document.getElementsByClassName("div")
-for(let i=0;i<=list.length;i++){
-var editbtn =  document.createElement('button')
-editbtn.class="editbtn"
-  // Append text node
-  editbtn.appendChild(document.createTextNode('edit'));
- 
-  list[i].appendChild(editbtn)
+  Array.from(item1).forEach(function(item1){
+    var text = e.target.value.toLowerCase();
+var itemName1 = item1.firstChild.textContent;
+
+if(itemName1.toLowerCase().indexOf(text) != -1) {
+  item1.style.display = 'block';
+} else {
+  item1.style.display = 'none';
 }
 
-  allitems.appendChild(list)
+  })
+}
+//   //   adding edit button
+// var allitems=document.getElementsByTagName('li')
+// var list= document.getElementsByClassName("div")
+// for(let i=0;i<=list.length;i++){
+// var editbtn =  document.createElement('button')
+// editbtn.class="editbtn"
+//   // Append text node
+//   editbtn.appendChild(document.createTextNode('edit'));
+ 
+//   list[i].appendChild(editbtn)
+// }
+
+//   allitems.appendChild(list)
+
