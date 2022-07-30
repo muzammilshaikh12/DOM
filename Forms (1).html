@@ -57,8 +57,8 @@
             function showNewUseronScreen(user){
              const d=document.getElementById('ul')
              const li= `<li id="${user.Email}"> ${user.Name} - ${user.Email} - ${user.Number} - ${user.Date} - ${user.Time} 
-              <button> Edit </button> 
-              <button onclick=deleteUser('${user.Email}')> Delete </button> 
+              <button onclick = editUser('${user.Email}')> Edit </button> 
+              <button onclick = deleteUser('${user.Email}')> Delete </button> 
                </li>`
             
            d.innerHTML = d.innerHTML + li 
@@ -75,13 +75,20 @@
             }
            }
        
-          function deleteUser(user) {
-            console.log(user)
+          function deleteUser(Email) {
+            // console.log(emailID)
             //  from local storage
-            localStorage.removeItem(user);
+            let tobeDeletedEmail=document.getElementById(Email)
+            let newparent1 = document.getElementById('ul')
+            newparent1.removeChild(tobeDeletedEmail)
+            localStorage.removeItem(Email)
            
           }
-
+             function editUser(Email) {
+              let newparent = document.getElementById('ul')
+              let childToBeDeleted = document.getElementById(Email)
+              newparent.removeChild(childToBeDeleted);
+             }
             </script>
           <!-- <script>
             function savetoLocalstorage(){
