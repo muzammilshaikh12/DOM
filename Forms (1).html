@@ -46,23 +46,41 @@
             }
 
             let userDetails_serialized=JSON.stringify(userDetails)
-
+            removeUserfromScreen(userDetails)
             localStorage.setItem(userDetails.Email , userDetails_serialized)
             showNewUseronScreen(userDetails)
+            
             // let userDetails_deserialized=localStorage.getItem(userDetails.Email)
 
             // console.log(userDetails_deserialized)
           }
             function showNewUseronScreen(user){
-            const d=document.getElementById('ul')
-            const li= `<li> ${user.Name} - ${user.Email} - ${user.Number} - ${user.Date} - ${user.Time} </li>`
+             const d=document.getElementById('ul')
+             const li= `<li id="${user.Email}"> ${user.Name} - ${user.Email} - ${user.Number} - ${user.Date} - ${user.Time} 
+              <button> Edit </button> 
+              <button onclick=deleteUser('${user.Email}')> Delete </button> 
+               </li>`
             
-           d.innerHTML = d.innerHTML + li;
-            
+           d.innerHTML = d.innerHTML + li 
+          
           }
-        
+           function removeUserfromScreen(user) {
+            let parent = document.getElementById('ul')
+             
+            let child=document.getElementById(user.Email)
+
+ 
+            if(child) {
+              parent.removeChild(child)
+            }
+           }
        
-       
+          function deleteUser(user) {
+            console.log(user)
+            //  from local storage
+            localStorage.removeItem(user);
+           
+          }
 
             </script>
           <!-- <script>
