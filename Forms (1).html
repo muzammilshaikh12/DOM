@@ -47,31 +47,21 @@
 
             let userDetails_serialized=JSON.stringify(userDetails)
 
-            localStorage.setItem('User-Details' , userDetails_serialized)
+            localStorage.setItem(userDetails.Email , userDetails_serialized)
+            showNewUseronScreen(userDetails)
+            // let userDetails_deserialized=localStorage.getItem(userDetails.Email)
 
-            let userDetails_deserialized=JSON.parse(localStorage.getItem('User-Details'))
-
-            // console.log(userDetails_deserialized);
-            // var list=document.getElementById('details')
-            
-        }
-        
-        let info=localStorage.getItem('User-Details')
-        let d=document.getElementById('ul')
-            // console.log(info)
-          if(info === null) {
-             d.style.display='none'
-          } else {
-           
-        
-           let li=document.createElement('li')
-
-           li.appendChild(document.createTextNode(info))
-
-           d.appendChild(li)
-         
+            // console.log(userDetails_deserialized)
           }
-
+            function showNewUseronScreen(user){
+            const d=document.getElementById('ul')
+            const li= `<li> ${user.Name} - ${user.Email} - ${user.Number} - ${user.Date} - ${user.Time} </li>`
+            
+           d.innerHTML = d.innerHTML + li;
+            
+          }
+        
+       
        
 
             </script>
